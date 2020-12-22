@@ -1,21 +1,82 @@
 package com.example.demo.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.demo.entity.Post;
+import com.example.demo.entity.Usuario;
+import com.example.demo.repository.PostRepo;
+import com.example.demo.repository.UsuarioRepo;
+import com.example.demo.service.PostService;
+import org.aspectj.bridge.Message;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import javax.persistence.PostRemove;
+import java.util.Date;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/post")
 public class PostController {
 
-    @GetMapping
-    public List<String> getPosts(){
-        List<String> post = new ArrayList<>();
-        post.add("Java");
-        post.add("Maven");
-        return post;
+    @Autowired
+    private PostRepo postRepo;
+
+    @Autowired
+    private PostService postService;
+
+    @Autowired
+    private UsuarioRepo usuarioRepo;
+
+    @GetMapping("/False")
+    public List<Post> getAllPosts() {
+        return postRepo.findAllByPublicado(false);
     }
+
+    //MOSTRAR TODOS LOS POSTS
+
+    @GetMapping("/All")
+    public List<Post> getAllPost() {
+        return postRepo.findAll();
+    }
+
+
+    //BUSCAR POR TITULO--------------------------------------------------------------------------------
+    @GetMapping("/geT/{title}")
+    public List<Post> getTitle(@PathVariable String title){
+        List<Post> posts = postRepo.findAll();
+        List<Post> encontrados = null;
+        for (Post post: posts
+             ) {
+            if(post.getTitulo().contains(title))
+                encontrados.add(post);
+        }
+        return encontrados;
+    }
+
+
+    //CREAR POST
+    @PostMapping("/{user_id}/crear")
+    public ResponseEntity<?> crearPost(@PathVariable Long user_id, @RequestBody Post post){
+        post.setFechaCreacion(new Date());
+        Usuario user = usuarioRepo.getOne(user_id);
+        user.addPost(post);
+        return new ResponseEntity<>(postRepo.save(post), HttpStatus.CREATED);
+    }
+
+    //MODIFICAR POST POR ID
+    @PutMapping(path = "/put/{id}")
+    public Post putPost(@PathVariable Long id, @RequestBody Post post){
+        return postService.putById(id,post);
+    }
+
+
+    //BORRAR POST POR ID
+    @DeleteMapping(path = "/del/{id}/post")
+    public ResponseEntity<?> deletePost(@PathVariable Long id) {
+        postRepo.deleteById(id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
+
+
 }

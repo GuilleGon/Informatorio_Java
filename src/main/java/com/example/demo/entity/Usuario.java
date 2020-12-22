@@ -1,5 +1,11 @@
 package com.example.demo.entity;
 
+import com.example.demo.repository.PostRepo;
+import com.example.demo.service.PostService;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -9,20 +15,22 @@ import java.util.List;
 public class Usuario implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     private String apellido;
     @Column(unique = true)
     private String email;
+    @JsonIgnore
     private String pass;
     @Column(name="fecha")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date fechaCreacion;
     private String ciudad;
     private String provincia;
     private String pais;
 
-    @OneToMany
+    @OneToMany(mappedBy = "autor", orphanRemoval = true, cascade = CascadeType.PERSIST)
     private List<Post> post;
 
     public List<Post> getPosts(){
@@ -33,15 +41,16 @@ public class Usuario implements Serializable {
         this.post = post;
     }
 
-    /*@OneToMany
+    @OneToMany(mappedBy = "autor", orphanRemoval = true, cascade = CascadeType.PERSIST)
     private List<Comentario> comentario;
 
     public List<Comentario> getComentario() {
         return comentario;
     }
+
     public void setComentario(List<Comentario> comentario) {
         this.comentario = comentario;
-    }*/
+    }
 
 
 
@@ -116,4 +125,16 @@ public class Usuario implements Serializable {
     public void setPais(String pais) {
         this.pais = pais;
     }
+
+    public void addPost(Post post){
+        this.post.add(post);
+        post.setAutor(this);
+    }
+
+    public void addComment(Comentario comment){
+        this.comentario.add(comment);
+        comment.setAutor(this);
+    }
+
+
 }
