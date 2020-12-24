@@ -9,7 +9,7 @@
 			"name": "Usuario",
 			"item": [
 				{
-					"name": "GET - Todos los Usuarios",
+					"name": "Mostrar todos los usuarios",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -26,7 +26,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/usuario/All",
+							"raw": "localhost:8080/api/v1/usuario/all",
 							"host": [
 								"localhost"
 							],
@@ -35,20 +35,20 @@
 								"api",
 								"v1",
 								"usuario",
-								"All"
+								"all"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "POST - Crear Usuario",
+					"name": "Crear usuario",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"nombre\": \"GuillermoNicolas\",\r\n        \"apellido\": \"Amarilla\",\r\n        \"email\": \"Guille2@email.com\",\r\n        \"pass\": \"asd\",\r\n        \"ciudad\": \"Corrientes\",\r\n        \"provincia\": \"Chaco\",\r\n        \"pais\": \"Argentina\"\r\n    }",
+							"raw": "    {\r\n        \"nombre\": \"Gonzalo\",\r\n        \"apellido\": \"Gonzalez\",\r\n        \"email\": \"Gonza@email.com\",\r\n        \"pass\": \"asd\",\r\n        \"ciudad\": \"Corrientes\",\r\n        \"provincia\": \"Chaco\",\r\n        \"pais\": \"Argentina\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -72,12 +72,12 @@
 					"response": []
 				},
 				{
-					"name": "GET - Por ciudad",
+					"name": "Mostrar por ciudad",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/usuario/Corrientes",
+							"raw": "localhost:8080/api/v1/usuario/ciudad/Corrientes",
 							"host": [
 								"localhost"
 							],
@@ -86,6 +86,7 @@
 								"api",
 								"v1",
 								"usuario",
+								"ciudad",
 								"Corrientes"
 							]
 						}
@@ -93,7 +94,7 @@
 					"response": []
 				},
 				{
-					"name": "DELETE - Usuario por id",
+					"name": "Borrar usuario por id",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -107,7 +108,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080//api/v1/usuario/del/1",
+							"raw": "localhost:8080//api/v1/usuario/borrar/user:1",
 							"host": [
 								"localhost"
 							],
@@ -117,15 +118,15 @@
 								"api",
 								"v1",
 								"usuario",
-								"del",
-								"1"
+								"borrar",
+								"user:1"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "PUT - Usuario por id",
+					"name": "Modificar usuario por id",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -139,7 +140,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/usuario/put/1",
+							"raw": "localhost:8080/api/v1/usuario/modificar/user:1",
 							"host": [
 								"localhost"
 							],
@@ -148,15 +149,15 @@
 								"api",
 								"v1",
 								"usuario",
-								"put",
-								"1"
+								"modificar",
+								"user:1"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "GET - Por fecha",
+					"name": "Mostrar usuario por fecha de creacion",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -207,12 +208,12 @@
 			"name": "Post",
 			"item": [
 				{
-					"name": "GET - Todos los posts",
+					"name": "Mostrar todos los posts",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/post/All",
+							"raw": "localhost:8080/api/v1/post/all",
 							"host": [
 								"localhost"
 							],
@@ -221,14 +222,14 @@
 								"api",
 								"v1",
 								"post",
-								"All"
+								"all"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "POST - Crear post",
+					"name": "Crear post",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -242,7 +243,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/post/1/crear",
+							"raw": "localhost:8080/api/v1/post/user:1/crear",
 							"host": [
 								"localhost"
 							],
@@ -251,7 +252,7 @@
 								"api",
 								"v1",
 								"post",
-								"1",
+								"user:1",
 								"crear"
 							]
 						}
@@ -259,13 +260,13 @@
 					"response": []
 				},
 				{
-					"name": "PUT - Post por id",
+					"name": "Modificar post por id",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"Titulazo\",\r\n    \"descripcion\": \"Una descripcion\",\r\n    \"contenido\": \"bbbbbbbbbbbbbbbbbbb,ccccccccccccccccccccccccccccccccccccccccccccccccc22\",\r\n    \"publicado\": true\r\n}",
+							"raw": "{\r\n    \"titulo\": \"Titulazo\",\r\n    \"descripcion\": \"Una descripcion modificada\",\r\n    \"contenido\": \"Contenido modificado del post\",\r\n    \"publicado\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -273,7 +274,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/post/put/1",
+							"raw": "localhost:8080/api/v1/post/modificar/post:1",
 							"host": [
 								"localhost"
 							],
@@ -282,20 +283,20 @@
 								"api",
 								"v1",
 								"post",
-								"put",
-								"1"
+								"modificar",
+								"post:1"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "DELETE - Borrar por id",
+					"name": "Borrar post por id",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/post/del/1/post",
+							"raw": "localhost:8080/api/v1/post/borrar/post:1",
 							"host": [
 								"localhost"
 							],
@@ -304,16 +305,15 @@
 								"api",
 								"v1",
 								"post",
-								"del",
-								"1",
-								"post"
+								"borrar",
+								"post:1"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "GET - Por titulo",
+					"name": "Mostrar posts por titulo",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -333,6 +333,28 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Mostrar posts no publicados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/post/ver/false",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"ver",
+								"false"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -340,7 +362,7 @@
 			"name": "Comentario",
 			"item": [
 				{
-					"name": "GET - Mostrar todos los comentarios",
+					"name": "Mostrar todos los comentarios",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -361,7 +383,7 @@
 					"response": []
 				},
 				{
-					"name": "POST - Crear Comentario",
+					"name": "Crear Comentario",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -375,7 +397,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/comment/1/crear",
+							"raw": "localhost:8080/api/v1/comment/crear/post:1/user:4",
 							"host": [
 								"localhost"
 							],
@@ -384,8 +406,84 @@
 								"api",
 								"v1",
 								"comment",
-								"1",
-								"crear"
+								"crear",
+								"post:1",
+								"user:4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar comentario por id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/comment/borrar/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"comment",
+								"borrar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar comentario por id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comentario\": \"Hola soy el comentario editado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/comment/modificar/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"comment",
+								"modificar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar cantidad de comentarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/comment/post:1/traer:2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"comment",
+								"post:1",
+								"traer:2"
 							]
 						}
 					},
