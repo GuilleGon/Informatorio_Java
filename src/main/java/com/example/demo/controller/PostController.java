@@ -28,20 +28,20 @@ public class PostController {
     @Autowired
     private UsuarioRepo usuarioRepo;
 
-    @GetMapping("/False")
+    @GetMapping("/ver/false")
     public List<Post> getAllPosts() {
         return postRepo.findAllByPublicado(false);
     }
 
     //MOSTRAR TODOS LOS POSTS
 
-    @GetMapping("/All")
+    @GetMapping("/all")
     public List<Post> getAllPost() {
         return postRepo.findAll();
     }
 
 
-    //BUSCAR POR TITULO--------------------------------------------------------------------------------
+    //BUSCAR POR TITULO---------------------------------------------------------------------------------------
     @GetMapping("/geT/{title}")
     public List<Post> getTitle(@PathVariable String title){
         List<Post> posts = postRepo.findAll();
@@ -56,7 +56,7 @@ public class PostController {
 
 
     //CREAR POST
-    @PostMapping("/{user_id}/crear")
+    @PostMapping("/user:{user_id}/crear")
     public ResponseEntity<?> crearPost(@PathVariable Long user_id, @RequestBody Post post){
         post.setFechaCreacion(new Date());
         Usuario user = usuarioRepo.getOne(user_id);
@@ -65,18 +65,20 @@ public class PostController {
     }
 
     //MODIFICAR POST POR ID
-    @PutMapping(path = "/put/{id}")
+    @PutMapping(path = "/modificar/post:{id}")
     public Post putPost(@PathVariable Long id, @RequestBody Post post){
         return postService.putById(id,post);
     }
 
 
     //BORRAR POST POR ID
-    @DeleteMapping(path = "/del/{id}/post")
+    @DeleteMapping(path = "/borrar/post:{id}")
     public ResponseEntity<?> deletePost(@PathVariable Long id) {
         postRepo.deleteById(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
+
+
 
 
 }

@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.Comentario;
 import com.example.demo.entity.Usuario;
 import com.example.demo.repository.PostRepo;
 import com.example.demo.repository.UsuarioRepo;
@@ -30,14 +31,14 @@ public class UsuarioController {
 
     //MOSTRAR TODOS LOS USUARIOS
 
-    @GetMapping("/All")
+    @GetMapping("/all")
     public List<Usuario> getAllUsuario(){
         return usuarioRepo.findAll();
     }
 
     //MOSTRAR USUARIO POR CIUDAD
 
-    @GetMapping("/{ciudad}")
+    @GetMapping("/ciudad/{ciudad}")
     public List<Usuario> getUsuarioByCiudad(@PathVariable(value = "ciudad") String ciudad){
         return usuarioRepo.findByCiudad(ciudad);
     }
@@ -60,18 +61,17 @@ public class UsuarioController {
 
     //BORRAR USUARIO POR ID
 
-    @DeleteMapping(value = "/del/{id}")
+    @DeleteMapping(value = "/borrar/user:{id}")
     public ResponseEntity<?> borrarUsuario(@PathVariable Long id){
         usuarioRepo.deleteById(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
     //MODIFICAR USUARIO POR ID
-    @PutMapping(path = "/put/{id}")
+    @PutMapping(path = "/modificar/user:{id}")
     public Usuario putUsuario(@PathVariable Long id, @RequestBody Usuario usuario){
         return usuarioService.putById(id, usuario);
     }
-
 
 
 }

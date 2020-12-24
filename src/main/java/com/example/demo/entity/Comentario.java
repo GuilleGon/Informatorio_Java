@@ -14,7 +14,7 @@ public class Comentario {
     private Long id;
     @Column(name = "fecha")
     private Date fechaCreacion;
-    @Column(length = 300)
+    @Column(length = 200)
     private String comentario;
 
     @JsonIgnore
@@ -39,7 +39,7 @@ public class Comentario {
 
 
 
-    public String getAutor() {
+    public Usuario getAutor() {
         return autor;
     }
 
