@@ -179,7 +179,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"fechaCreacion\": \"2020-12-18\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -187,7 +187,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/usuario/fecha",
+							"raw": "localhost:8080/api/v1/usuario/fecha/24-12-2020",
 							"host": [
 								"localhost"
 							],
@@ -196,7 +196,8 @@
 								"api",
 								"v1",
 								"usuario",
-								"fecha"
+								"fecha",
+								"24-12-2020"
 							]
 						}
 					},
@@ -235,7 +236,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"Titulazo\",\r\n    \"descripcion\": \"Una descripcion\",\r\n    \"contenido\": \"aaaaaaaaaaa,aaaaaaaaaaaaaabbbbbbbbbbbbbbb\",\r\n    \"publicado\": true\r\n}",
+							"raw": "{\r\n    \"titulo\": \"Titulazo titulo y muchos titulos\",\r\n    \"descripcion\": \"Una descripcion\",\r\n    \"contenido\": \"aaaaaaaaaaa,aaaaaaaaaaaaaabbbbbbbbbbbbbbb\",\r\n    \"publicado\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -266,7 +267,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"Titulazo\",\r\n    \"descripcion\": \"Una descripcion modificada\",\r\n    \"contenido\": \"Contenido modificado del post\",\r\n    \"publicado\": true\r\n}",
+							"raw": "{\r\n    \"titulo\": \"Titulo de titulos\",\r\n    \"descripcion\": \"Una descripcion modificada\",\r\n    \"contenido\": \"Contenido modificado del post\",\r\n    \"publicado\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -318,7 +319,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/post/geT/Titulazo",
+							"raw": "localhost:8080/api/v1/post/geT/titulo",
 							"host": [
 								"localhost"
 							],
@@ -328,7 +329,7 @@
 								"v1",
 								"post",
 								"geT",
-								"Titulazo"
+								"titulo"
 							]
 						}
 					},

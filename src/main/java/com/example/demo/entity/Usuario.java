@@ -1,14 +1,10 @@
 package com.example.demo.entity;
 
-import com.example.demo.repository.PostRepo;
-import com.example.demo.service.PostService;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -24,8 +20,7 @@ public class Usuario implements Serializable {
     @JsonIgnore
     private String pass;
     @Column(name="fecha")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date fechaCreacion;
+    private String fechaCreacion;
     private String ciudad;
     private String provincia;
     private String pais;
@@ -94,11 +89,11 @@ public class Usuario implements Serializable {
         this.pass = pass;
     }
 
-    public Date getFechaCreacion() {
+    public String getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(Date fechaCreacion) {
+    public void setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 

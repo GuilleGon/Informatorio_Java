@@ -12,7 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.file.Path;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +20,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/comment")
 public class ComentarioController {
+    private SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+    private String date  = format.format(new Date());
 
     @Autowired
     private PostRepo postRepo;
@@ -43,7 +45,7 @@ public class ComentarioController {
     @PostMapping("/crear/post:{id_post}/user:{id_user}")
     public ResponseEntity<?> createComment(@RequestBody Comentario comentario, @PathVariable Long id_post, @PathVariable Long id_user) {
         if(comentario.getComentario().length() <= 200) {
-            comentario.setFechaCreacion(new Date());
+            comentario.setFechaCreacion(date);
 
             Post post = postRepo.getOne(id_post);
             Usuario user = usuarioRepo.getOne(id_user);

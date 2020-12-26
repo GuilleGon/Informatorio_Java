@@ -3,7 +3,6 @@ package com.example.demo.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 public class Comentario {
@@ -13,7 +12,7 @@ public class Comentario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "fecha")
-    private Date fechaCreacion;
+    private String fechaCreacion;
     @Column(length = 200)
     private String comentario;
 
@@ -55,11 +54,11 @@ public class Comentario {
         this.id = id;
     }
 
-    public Date getFechaCreacion() {
+    public String getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(Date fechaCreacion) {
+    public void setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 

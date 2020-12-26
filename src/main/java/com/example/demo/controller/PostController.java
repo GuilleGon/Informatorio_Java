@@ -5,19 +5,21 @@ import com.example.demo.entity.Usuario;
 import com.example.demo.repository.PostRepo;
 import com.example.demo.repository.UsuarioRepo;
 import com.example.demo.service.PostService;
-import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.PostRemove;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.ListIterator;
 
 @RestController
 @RequestMapping("/api/v1/post")
 public class PostController {
+    private SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+    private String date  = format.format(new Date());
 
     @Autowired
     private PostRepo postRepo;
@@ -42,23 +44,16 @@ public class PostController {
 
 
     //BUSCAR POR TITULO---------------------------------------------------------------------------------------
-    @GetMapping("/geT/{title}")
-    public List<Post> getTitle(@PathVariable String title){
-        List<Post> posts = postRepo.findAll();
-        List<Post> encontrados = null;
-        for (Post post: posts
-             ) {
-            if(post.getTitulo().contains(title))
-                encontrados.add(post);
-        }
-        return encontrados;
+    @GetMapping(path = "/geT/{titulo}")
+    public List<Post> getTitulos(@PathVariable String titulo){
+        return postRepo.findByTituloContaining(titulo);
     }
 
 
     //CREAR POST
     @PostMapping("/user:{user_id}/crear")
     public ResponseEntity<?> crearPost(@PathVariable Long user_id, @RequestBody Post post){
-        post.setFechaCreacion(new Date());
+        post.setFechaCreacion(date);
         Usuario user = usuarioRepo.getOne(user_id);
         user.addPost(post);
         return new ResponseEntity<>(postRepo.save(post), HttpStatus.CREATED);

@@ -5,12 +5,15 @@ import com.example.demo.repository.PostRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 
 @Service
 public class PostService {
+    private SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+    private String date  = format.format(new Date());
 
     @Autowired
     private PostRepo postRepo;
@@ -22,7 +25,7 @@ public class PostService {
             aa.setTitulo(post.getTitulo());
             aa.setDescripcion(post.getDescripcion());
             aa.setContenido(post.getContenido());
-            aa.setFechaCreacion(new Date());
+            aa.setFechaCreacion(date);
             aa.setPublicado(post.isPublicado());
 
             return this.postRepo.save(aa);
@@ -33,4 +36,10 @@ public class PostService {
                 });
     }
 
+    /*public List<Post> findByTitulo(String titulo) {
+        List<Post> post = postRepo.findAll();
+        if (post.listIterator().next().getTitulo().contains(titulo)){
+            return post.
+        }
+    }*/
 }

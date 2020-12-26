@@ -1,23 +1,24 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.Comentario;
 import com.example.demo.entity.Usuario;
 import com.example.demo.repository.PostRepo;
 import com.example.demo.repository.UsuarioRepo;
 import com.example.demo.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/usuario")
 public class UsuarioController {
+    private SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+    private String date  = format.format(new Date());
 
     @Autowired
     private UsuarioRepo usuarioRepo;
@@ -27,6 +28,9 @@ public class UsuarioController {
 
     @Autowired
     private PostRepo postRepo;
+
+    public UsuarioController() throws ParseException {
+    }
 
 
     //MOSTRAR TODOS LOS USUARIOS
@@ -45,9 +49,9 @@ public class UsuarioController {
 
     //MOSTRAR DESPUES POR FECHA
 
-    @GetMapping("/fecha")
-    public List<Usuario> getUsuarioByFecha(@DateTimeFormat(pattern = "dd-MM-yyyy") Date fechaAlta){
-        return usuarioRepo.findByFechaCreacion(fechaAlta);
+    @GetMapping("/fecha/{fechaAlta}")
+    public List<Usuario> getUsuarioByFecha(@PathVariable String fechaAlta) {
+        return usuarioRepo.findByFechaCreacionAfter(fechaAlta);
     }
 
 
@@ -55,7 +59,7 @@ public class UsuarioController {
 
     @PostMapping("/crear")
     public ResponseEntity<?> crearUsuario(@RequestBody Usuario usuario){
-        usuario.setFechaCreacion(new Date());
+        usuario.setFechaCreacion(date);
         return new ResponseEntity<>(usuarioRepo.save(usuario), HttpStatus.CREATED);
     }
 

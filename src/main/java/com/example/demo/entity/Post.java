@@ -1,15 +1,10 @@
 package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import net.bytebuddy.implementation.bytecode.Removal;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.xml.stream.events.Comment;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,8 +18,7 @@ public class Post implements Serializable {
     private String descripcion;
     private String contenido;
     @Column(name = "fecha")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date fechaCreacion;
+    private String fechaCreacion;
     private boolean publicado;
 
     @JsonIgnore
@@ -89,11 +83,11 @@ public class Post implements Serializable {
         this.contenido = contenido;
     }
 
-    public Date getFechaCreacion() {
+    public String getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(Date fechaCreacion) {
+    public void setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 

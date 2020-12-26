@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface UsuarioRepo extends JpaRepository<Usuario, Long> {
 
-    List<Usuario> findByFechaCreacion(Date fechaCreacion);
     List<Usuario> findByCiudad(String ciudad);
+
+    List<Usuario> findByFechaCreacionAfter(String fecha);
 }
