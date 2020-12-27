@@ -74,9 +74,9 @@ public class ComentarioController {
     //TRAER LOS COMENTARIOS MAS NUEVOS
     @GetMapping(path = "/post:{id_post}/traer:{cant}")
     public List<Comentario> traerComentarios(@PathVariable int cant, @PathVariable Long id_post){
-            return postRepo.getOne(id_post).getComentario().subList(
-                    ((postRepo.getOne(id_post).getComentario().size() - 1) + 1) - cant,
-                    (postRepo.getOne(id_post).getComentario().size() - 1) + 1);
+        return postRepo.getOne(id_post).getComentario().subList(
+                ((postRepo.getOne(id_post).getComentario().size() - 1) + 1) - cant,
+                (postRepo.getOne(id_post).getComentario().size() - 1) + 1);
     }
 
     @GetMapping(path = "/post:{id_post}/traer:")

@@ -48,7 +48,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"nombre\": \"Gonzalo\",\r\n        \"apellido\": \"Gonzalez\",\r\n        \"email\": \"Gonza1@email.com\",\r\n        \"pass\": \"asd\",\r\n        \"ciudad\": \"Corrientes\",\r\n        \"provincia\": \"Chaco\",\r\n        \"pais\": \"Argentina\"\r\n    }",
+							"raw": "    {\r\n        \"nombre\": \"Pepe\",\r\n        \"apellido\": \"Amarilla\",\r\n        \"email\": \"pepin0202@email.com\",\r\n        \"pass\": \"pass2\",\r\n        \"ciudad\": \"Corrientes\",\r\n        \"provincia\": \"Corrientes\",\r\n        \"pais\": \"Argentina\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -236,7 +236,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"Titulazo titulo y muchos titulos\",\r\n    \"descripcion\": \"Una descripcion\",\r\n    \"contenido\": \"aaaaaaaaaaa,aaaaaaaaaaaaaabbbbbbbbbbbbbbb\",\r\n    \"publicado\": true\r\n}",
+							"raw": "{\r\n    \"titulo\": \"Mucho de muchos titulos\",\r\n    \"descripcion\": \"Una segunda descripcion\",\r\n    \"contenido\": \"El contenido sobre los post de muchos titulos\",\r\n    \"publicado\": false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -244,7 +244,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/post/user:1/crear",
+							"raw": "localhost:8080/api/v1/post/user:3/crear",
 							"host": [
 								"localhost"
 							],
@@ -253,7 +253,7 @@
 								"api",
 								"v1",
 								"post",
-								"user:1",
+								"user:3",
 								"crear"
 							]
 						}
@@ -390,7 +390,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"comentario\": \"Hola soy un comentario\",\r\n    \"autor\": \"Guille2@email.com\"\r\n}",
+							"raw": "{\r\n    \"comentario\": \"Hola este es mi propio comentario\",\r\n    \"autor\": \"Guille2@email.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -444,7 +444,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"comentario\": \"Hola soy el comentario editado\"\r\n}",
+							"raw": "{\r\n    \"comentario\": \"Hola este es el primer comentario de varios comentarios\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -452,7 +452,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/comment/modificar/1",
+							"raw": "localhost:8080/api/v1/comment/modificar/3",
 							"host": [
 								"localhost"
 							],
@@ -462,7 +462,7 @@
 								"v1",
 								"comment",
 								"modificar",
-								"1"
+								"3"
 							]
 						}
 					},
